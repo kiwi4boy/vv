@@ -1,0 +1,1607 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions name="referenceDataWcfService" targetNamespace="http://www.pprglobal.com/compass/ref" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tns="http://www.pprglobal.com/compass/ref" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing">
+	<wsp:Policy wsu:Id="BasicHttpBinding_IReferenceDataService1_policy">
+		<wsp:ExactlyOne>
+			<wsp:All>
+				<sp:TransportBinding xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+					<wsp:Policy>
+						<sp:TransportToken>
+							<wsp:Policy>
+								<sp:HttpsToken RequireClientCertificate="false"/>
+							</wsp:Policy>
+						</sp:TransportToken>
+						<sp:AlgorithmSuite>
+							<wsp:Policy>
+								<sp:Basic256/>
+							</wsp:Policy>
+						</sp:AlgorithmSuite>
+						<sp:Layout>
+							<wsp:Policy>
+								<sp:Strict/>
+							</wsp:Policy>
+						</sp:Layout>
+					</wsp:Policy>
+				</sp:TransportBinding>
+			</wsp:All>
+		</wsp:ExactlyOne>
+	</wsp:Policy>
+	<wsdl:types>
+		<xs:schema elementFormDefault="qualified" targetNamespace="http://www.pprglobal.com/compass/ref" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+			<xs:element name="GetInterestRates">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" name="versionId" nillable="true" type="xs:string"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="GetInterestRatesResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" name="GetInterestRatesResult" nillable="true" type="tns:ArrayOfInterestRateIndex"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:complexType name="ArrayOfInterestRateIndex">
+				<xs:sequence>
+					<xs:element minOccurs="0" maxOccurs="unbounded" name="InterestRateIndex" nillable="true" type="tns:InterestRateIndex"/>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:element name="ArrayOfInterestRateIndex" nillable="true" type="tns:ArrayOfInterestRateIndex"/>
+			<xs:complexType name="InterestRateIndex">
+				<xs:annotation>
+					<xs:appinfo/>
+					<xs:documentation>&lt;summary&gt;
+            A floating interest rate index.
+            &lt;/summary&gt;</xs:documentation>
+				</xs:annotation>
+				<xs:sequence>
+					<xs:element name="Id" nillable="true" type="xs:string">
+						<xs:annotation>
+							<xs:appinfo/>
+							<xs:documentation>&lt;summary&gt;
+            A unique identifier.
+            &lt;/summary&gt;</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element minOccurs="0" name="Name" nillable="true" type="xs:string">
+						<xs:annotation>
+							<xs:appinfo>
+								<DefaultValue EmitDefaultValue="false" xmlns="http://schemas.microsoft.com/2003/10/Serialization/"/>
+							</xs:appinfo>
+							<xs:documentation>&lt;summary&gt;
+            A user friendly name.
+            &lt;/summary&gt;</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:element name="InterestRateIndex" nillable="true" type="tns:InterestRateIndex"/>
+			<xs:element name="GetConstructionDiscIndexInterestRates">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" name="irVersionId" nillable="true" type="xs:string"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="GetConstructionDiscIndexInterestRatesResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" name="GetConstructionDiscIndexInterestRatesResult" nillable="true" type="tns:ArrayOfInterestRateIndex"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="GetInterestRateVersions">
+				<xs:complexType>
+					<xs:sequence/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="GetInterestRateVersionsResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" name="GetInterestRateVersionsResult" nillable="true" type="tns:ArrayOfInterestRateVersion"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:complexType name="ArrayOfInterestRateVersion">
+				<xs:sequence>
+					<xs:element minOccurs="0" maxOccurs="unbounded" name="InterestRateVersion" nillable="true" type="tns:InterestRateVersion"/>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:element name="ArrayOfInterestRateVersion" nillable="true" type="tns:ArrayOfInterestRateVersion"/>
+			<xs:complexType name="InterestRateVersion">
+				<xs:annotation>
+					<xs:appinfo/>
+					<xs:documentation>&lt;summary&gt;
+            A interest rate index version.
+            &lt;/summary&gt;</xs:documentation>
+				</xs:annotation>
+				<xs:sequence>
+					<xs:element name="Id" nillable="true" type="xs:string">
+						<xs:annotation>
+							<xs:appinfo/>
+							<xs:documentation>&lt;summary&gt;
+            A unique identifier.
+            &lt;/summary&gt;</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="Name" nillable="true" type="xs:string">
+						<xs:annotation>
+							<xs:appinfo/>
+							<xs:documentation>&lt;summary&gt;
+            A user friendly name.
+            &lt;/summary&gt;</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="VersionDate" type="xs:dateTime">
+						<xs:annotation>
+							<xs:appinfo/>
+							<xs:documentation>&lt;summary&gt;
+            The date this version represents.
+            &lt;/summary&gt;</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:element name="InterestRateVersion" nillable="true" type="tns:InterestRateVersion"/>
+			<xs:element name="GetPropertyTypes">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" name="forecastVersionId" nillable="true" type="xs:string"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="GetPropertyTypesResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" name="GetPropertyTypesResult" nillable="true" type="tns:ArrayOfPropertyType"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:complexType name="ArrayOfPropertyType">
+				<xs:sequence>
+					<xs:element minOccurs="0" maxOccurs="unbounded" name="PropertyType" nillable="true" type="tns:PropertyType"/>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:element name="ArrayOfPropertyType" nillable="true" type="tns:ArrayOfPropertyType"/>
+			<xs:complexType name="PropertyType">
+				<xs:annotation>
+					<xs:appinfo/>
+					<xs:documentation>&lt;summary&gt;
+            A Compass property type.
+            &lt;/summary&gt;</xs:documentation>
+				</xs:annotation>
+				<xs:sequence>
+					<xs:element name="Id" nillable="true" type="xs:string">
+						<xs:annotation>
+							<xs:appinfo/>
+							<xs:documentation>&lt;summary&gt;
+            A unique identifier.
+            &lt;/summary&gt;</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element minOccurs="0" name="Name" nillable="true" type="xs:string">
+						<xs:annotation>
+							<xs:appinfo/>
+							<xs:documentation>&lt;summary&gt;
+            A user friendly name.
+            &lt;/summary&gt;</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:element name="PropertyType" nillable="true" type="tns:PropertyType"/>
+			<xs:element name="GetBuiltinForecastScenarios">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" name="forecastVersionId" nillable="true" type="xs:string"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="GetBuiltinForecastScenariosResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" name="GetBuiltinForecastScenariosResult" nillable="true" type="q1:ArrayOfForecastScenario" xmlns:q1="http://www.pprglobal.com/compass"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="GetSupportedZipcodes">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" name="forecastVersionId" nillable="true" type="xs:string"/>
+						<xs:element minOccurs="0" name="propertyType" nillable="true" type="xs:string"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="GetSupportedZipcodesResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" name="GetSupportedZipcodesResult" nillable="true" type="tns:SupportedZipcodeResponse"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:complexType name="SupportedZipcodeResponse">
+				<xs:annotation>
+					<xs:appinfo/>
+					<xs:documentation>&lt;summary&gt;
+            Response containing supported zipcodes.
+            &lt;/summary&gt;</xs:documentation>
+				</xs:annotation>
+				<xs:sequence>
+					<xs:element name="ZipRanges" nillable="true" type="tns:ArrayOfRange">
+						<xs:annotation>
+							<xs:appinfo/>
+							<xs:documentation>&lt;summary&gt;
+            The set of zipcode ranges that are supported.
+            &lt;/summary&gt;</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:element name="SupportedZipcodeResponse" nillable="true" type="tns:SupportedZipcodeResponse"/>
+			<xs:complexType name="ArrayOfRange">
+				<xs:sequence>
+					<xs:element minOccurs="0" maxOccurs="unbounded" name="Range" nillable="true" type="tns:Range"/>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:element name="ArrayOfRange" nillable="true" type="tns:ArrayOfRange"/>
+			<xs:complexType name="Range">
+				<xs:annotation>
+					<xs:appinfo/>
+					<xs:documentation>&lt;summary&gt;
+            Represents a range of string values. 
+            &lt;/summary&gt;</xs:documentation>
+				</xs:annotation>
+				<xs:sequence>
+					<xs:element name="Min" nillable="true" type="xs:string">
+						<xs:annotation>
+							<xs:appinfo/>
+							<xs:documentation>&lt;summary&gt;
+            The minimum range value (inclusive).
+            &lt;/summary&gt;</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element minOccurs="0" name="Max" nillable="true" type="xs:string">
+						<xs:annotation>
+							<xs:appinfo>
+								<DefaultValue EmitDefaultValue="false" xmlns="http://schemas.microsoft.com/2003/10/Serialization/"/>
+							</xs:appinfo>
+							<xs:documentation>&lt;summary&gt;
+            The maximum range value (inclusive).  Null if the range includes just the minimum value.
+            &lt;/summary&gt;</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:element name="Range" nillable="true" type="tns:Range"/>
+			<xs:element name="GetSupportedMetros">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" name="forecastVersionId" nillable="true" type="xs:string"/>
+						<xs:element minOccurs="0" name="propertyType" nillable="true" type="xs:string"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="GetSupportedMetrosResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" name="GetSupportedMetrosResult" nillable="true" type="tns:SupportedMetroResponse"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:complexType name="SupportedMetroResponse">
+				<xs:annotation>
+					<xs:appinfo/>
+					<xs:documentation>&lt;summary&gt;
+            Response containing supported metros.
+            &lt;/summary&gt;</xs:documentation>
+				</xs:annotation>
+				<xs:sequence>
+					<xs:element name="Metros" nillable="true" type="q2:ArrayOfstring" xmlns:q2="http://schemas.microsoft.com/2003/10/Serialization/Arrays">
+						<xs:annotation>
+							<xs:appinfo/>
+							<xs:documentation>&lt;summary&gt;
+            The set of supported metro Ids.
+            &lt;/summary&gt;</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:element name="SupportedMetroResponse" nillable="true" type="tns:SupportedMetroResponse"/>
+			<xs:element name="GetMetros">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" name="forecastVersionId" nillable="true" type="xs:string"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="GetMetrosResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" name="GetMetrosResult" nillable="true" type="tns:ArrayOfMetro"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:complexType name="ArrayOfMetro">
+				<xs:sequence>
+					<xs:element minOccurs="0" maxOccurs="unbounded" name="Metro" nillable="true" type="tns:Metro"/>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:element name="ArrayOfMetro" nillable="true" type="tns:ArrayOfMetro"/>
+			<xs:complexType name="Metro">
+				<xs:annotation>
+					<xs:appinfo/>
+					<xs:documentation>&lt;summary&gt;
+            A Compass metro forecast area.
+            &lt;/summary&gt;</xs:documentation>
+				</xs:annotation>
+				<xs:sequence>
+					<xs:element name="Id" nillable="true" type="xs:string">
+						<xs:annotation>
+							<xs:appinfo/>
+							<xs:documentation>&lt;summary&gt;
+            A unique identifier.
+            &lt;/summary&gt;</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element minOccurs="0" name="Name" nillable="true" type="xs:string">
+						<xs:annotation>
+							<xs:appinfo>
+								<DefaultValue EmitDefaultValue="false" xmlns="http://schemas.microsoft.com/2003/10/Serialization/"/>
+							</xs:appinfo>
+							<xs:documentation>&lt;summary&gt;
+            A user friendly name.
+            &lt;/summary&gt;</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:element name="Metro" nillable="true" type="tns:Metro"/>
+			<xs:element name="GetForecastVersions">
+				<xs:complexType>
+					<xs:sequence/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="GetForecastVersionsResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" name="GetForecastVersionsResult" nillable="true" type="tns:ArrayOfForecastVersion"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:complexType name="ArrayOfForecastVersion">
+				<xs:sequence>
+					<xs:element minOccurs="0" maxOccurs="unbounded" name="ForecastVersion" nillable="true" type="tns:ForecastVersion"/>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:element name="ArrayOfForecastVersion" nillable="true" type="tns:ArrayOfForecastVersion"/>
+			<xs:complexType name="ForecastVersion">
+				<xs:annotation>
+					<xs:appinfo/>
+					<xs:documentation>&lt;summary&gt;
+            A PPR forecast version.
+            &lt;/summary&gt;</xs:documentation>
+				</xs:annotation>
+				<xs:sequence>
+					<xs:element name="Id" nillable="true" type="xs:string">
+						<xs:annotation>
+							<xs:appinfo/>
+							<xs:documentation>&lt;summary&gt;
+            A unique identifier.
+            &lt;/summary&gt;</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="Name" nillable="true" type="xs:string">
+						<xs:annotation>
+							<xs:appinfo/>
+							<xs:documentation>&lt;summary&gt;
+            A user friendly name.
+            &lt;/summary&gt;</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="ForecastDate" type="xs:dateTime">
+						<xs:annotation>
+							<xs:appinfo/>
+							<xs:documentation>&lt;summary&gt;
+            The date this forecast represents.
+            &lt;/summary&gt;</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="IdIRate" nillable="true" type="xs:string">
+						<xs:annotation>
+							<xs:appinfo/>
+							<xs:documentation>&lt;summary&gt;
+            A unique identifier of IR Version for given Forecast Version
+            &lt;/summary&gt;</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element minOccurs="0" name="StandardForecastVersion" nillable="true" type="xs:int">
+						<xs:annotation>
+							<xs:appinfo/>
+							<xs:documentation>&lt;summary&gt;
+            Sets to 1 if the forecast is standard forecast. A standard forecast is the forecast that Costar will release on a quarterly basis.
+            &lt;/summary&gt;</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element minOccurs="0" name="ForecastQuarter" nillable="true" type="xs:dateTime">
+						<xs:annotation>
+							<xs:appinfo/>
+							<xs:documentation>&lt;summary&gt;
+            Current quarter. Can be any date within the Current Quarter. Usually first day of the first month of the quarter.
+            &lt;/summary&gt;</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element minOccurs="0" name="ModelNumber" nillable="true" type="xs:string">
+						<xs:annotation>
+							<xs:appinfo/>
+							<xs:documentation>&lt;summary&gt;
+            Model Number based on Id
+            &lt;/summary&gt;</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:element name="ForecastVersion" nillable="true" type="tns:ForecastVersion"/>
+			<xs:element name="GetForecastScenarioDescriptions">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" name="forecastVersionId" nillable="true" type="xs:string"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="GetForecastScenarioDescriptionsResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" name="GetForecastScenarioDescriptionsResult" nillable="true" type="q3:ArrayOfForecastScenarioDescription" xmlns:q3="http://www.pprglobal.com/compass"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="GetRiskGrades">
+				<xs:complexType>
+					<xs:sequence/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="GetRiskGradesResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" name="GetRiskGradesResult" nillable="true" type="tns:ArrayOfRiskGrade"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:complexType name="ArrayOfRiskGrade">
+				<xs:sequence>
+					<xs:element minOccurs="0" maxOccurs="unbounded" name="RiskGrade" nillable="true" type="tns:RiskGrade"/>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:element name="ArrayOfRiskGrade" nillable="true" type="tns:ArrayOfRiskGrade"/>
+			<xs:complexType name="RiskGrade">
+				<xs:annotation>
+					<xs:appinfo/>
+					<xs:documentation>&lt;summary&gt;
+            A Compass risk grade.
+            &lt;/summary&gt;</xs:documentation>
+				</xs:annotation>
+				<xs:sequence>
+					<xs:element name="Id" nillable="true" type="xs:string">
+						<xs:annotation>
+							<xs:appinfo/>
+							<xs:documentation>&lt;summary&gt;
+            A unique identifier.
+            &lt;/summary&gt;</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element minOccurs="0" name="Name" nillable="true" type="xs:string">
+						<xs:annotation>
+							<xs:appinfo>
+								<DefaultValue EmitDefaultValue="false" xmlns="http://schemas.microsoft.com/2003/10/Serialization/"/>
+							</xs:appinfo>
+							<xs:documentation>&lt;summary&gt;
+            A user friendly name.
+            &lt;/summary&gt;</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element minOccurs="0" name="VolatilityMultiplier" type="xs:float">
+						<xs:annotation>
+							<xs:appinfo>
+								<DefaultValue EmitDefaultValue="false" xmlns="http://schemas.microsoft.com/2003/10/Serialization/"/>
+							</xs:appinfo>
+							<xs:documentation>&lt;summary&gt;
+            The volatility multiplier this risk grade represents.
+            &lt;/summary&gt;</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:element name="RiskGrade" nillable="true" type="tns:RiskGrade"/>
+			<xs:element name="GetTenantCreditRatings">
+				<xs:complexType>
+					<xs:sequence/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="GetTenantCreditRatingsResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" name="GetTenantCreditRatingsResult" nillable="true" type="tns:ArrayOfTenantCreditRating"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:complexType name="ArrayOfTenantCreditRating">
+				<xs:sequence>
+					<xs:element minOccurs="0" maxOccurs="unbounded" name="TenantCreditRating" nillable="true" type="tns:TenantCreditRating"/>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:element name="ArrayOfTenantCreditRating" nillable="true" type="tns:ArrayOfTenantCreditRating"/>
+			<xs:complexType name="TenantCreditRating">
+				<xs:annotation>
+					<xs:appinfo/>
+					<xs:documentation>&lt;summary&gt;
+            A tenant credit rating.
+            &lt;/summary&gt;</xs:documentation>
+				</xs:annotation>
+				<xs:sequence>
+					<xs:element name="Id" nillable="true" type="xs:string">
+						<xs:annotation>
+							<xs:appinfo/>
+							<xs:documentation>&lt;summary&gt;
+            A unique identifier.
+            &lt;/summary&gt;</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element minOccurs="0" name="Name" nillable="true" type="xs:string">
+						<xs:annotation>
+							<xs:appinfo>
+								<DefaultValue EmitDefaultValue="false" xmlns="http://schemas.microsoft.com/2003/10/Serialization/"/>
+							</xs:appinfo>
+							<xs:documentation>&lt;summary&gt;
+            A user friendly name.
+            &lt;/summary&gt;</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element minOccurs="0" name="RiskMultiplier" type="xs:float">
+						<xs:annotation>
+							<xs:appinfo>
+								<DefaultValue EmitDefaultValue="false" xmlns="http://schemas.microsoft.com/2003/10/Serialization/"/>
+							</xs:appinfo>
+							<xs:documentation>&lt;summary&gt;
+            The associated risk multiplier.
+            &lt;/summary&gt;</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:element name="TenantCreditRating" nillable="true" type="tns:TenantCreditRating"/>
+			<xs:element name="GetBorrowerCreditRatings">
+				<xs:complexType>
+					<xs:sequence/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="GetBorrowerCreditRatingsResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" name="GetBorrowerCreditRatingsResult" nillable="true" type="tns:ArrayOfBorrowerCreditRating"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:complexType name="ArrayOfBorrowerCreditRating">
+				<xs:sequence>
+					<xs:element minOccurs="0" maxOccurs="unbounded" name="BorrowerCreditRating" nillable="true" type="tns:BorrowerCreditRating"/>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:element name="ArrayOfBorrowerCreditRating" nillable="true" type="tns:ArrayOfBorrowerCreditRating"/>
+			<xs:complexType name="BorrowerCreditRating">
+				<xs:annotation>
+					<xs:appinfo/>
+					<xs:documentation>&lt;summary&gt;
+            A borrower credit rating.
+            &lt;/summary&gt;</xs:documentation>
+				</xs:annotation>
+				<xs:sequence>
+					<xs:element name="Id" nillable="true" type="xs:string">
+						<xs:annotation>
+							<xs:appinfo/>
+							<xs:documentation>&lt;summary&gt;
+            A unique identifier.
+            &lt;/summary&gt;</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element minOccurs="0" name="Name" nillable="true" type="xs:string">
+						<xs:annotation>
+							<xs:appinfo>
+								<DefaultValue EmitDefaultValue="false" xmlns="http://schemas.microsoft.com/2003/10/Serialization/"/>
+							</xs:appinfo>
+							<xs:documentation>&lt;summary&gt;
+            A user friendly name.
+            &lt;/summary&gt;</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element minOccurs="0" name="VolatilityMultiplier" type="xs:float">
+						<xs:annotation>
+							<xs:appinfo>
+								<DefaultValue EmitDefaultValue="false" xmlns="http://schemas.microsoft.com/2003/10/Serialization/"/>
+							</xs:appinfo>
+							<xs:documentation>&lt;summary&gt;
+            The associated volatility multiplier.
+            &lt;/summary&gt;</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:element name="BorrowerCreditRating" nillable="true" type="tns:BorrowerCreditRating"/>
+			<xs:element name="GetConfidenceLevels">
+				<xs:complexType>
+					<xs:sequence/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="GetConfidenceLevelsResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" name="GetConfidenceLevelsResult" nillable="true" type="tns:ArrayOfConfidenceLevel"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:complexType name="ArrayOfConfidenceLevel">
+				<xs:sequence>
+					<xs:element minOccurs="0" maxOccurs="unbounded" name="ConfidenceLevel" nillable="true" type="tns:ConfidenceLevel"/>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:element name="ArrayOfConfidenceLevel" nillable="true" type="tns:ArrayOfConfidenceLevel"/>
+			<xs:complexType name="ConfidenceLevel">
+				<xs:annotation>
+					<xs:appinfo/>
+					<xs:documentation>&lt;summary&gt;
+            Confidence Level. Which is the probability that losses will be below the Output value.  For 
+            example, if the confidence level is 70% and Expected Losses are 5%, then there is a 70% chance loses 
+            will be less than 5%.
+            &lt;/summary&gt;</xs:documentation>
+				</xs:annotation>
+				<xs:sequence>
+					<xs:element name="Name" nillable="true" type="xs:string">
+						<xs:annotation>
+							<xs:appinfo/>
+							<xs:documentation>&lt;summary&gt;
+            A user friendly name.
+            &lt;/summary&gt;</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="Level" type="xs:float">
+						<xs:annotation>
+							<xs:appinfo/>
+							<xs:documentation>&lt;summary&gt;
+            The confidence level.
+            &lt;/summary&gt;
+            &lt;remarks&gt;0 &amp;lt; Level %lt; 1&lt;/remarks&gt;</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:element name="ConfidenceLevel" nillable="true" type="tns:ConfidenceLevel"/>
+			<xs:element name="GetSupportedModelVersions">
+				<xs:complexType>
+					<xs:sequence/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="GetSupportedModelVersionsResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" name="GetSupportedModelVersionsResult" nillable="true" type="tns:ClientSupportedModelVersions"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:complexType name="ClientSupportedModelVersions">
+				<xs:sequence>
+					<xs:element name="Name" nillable="true" type="xs:string"/>
+					<xs:element name="ModelVersion" nillable="true" type="q4:Version" xmlns:q4="http://schemas.datacontract.org/2004/07/System"/>
+					<xs:element name="GeographyVersion" nillable="true" type="q5:Version" xmlns:q5="http://schemas.datacontract.org/2004/07/System"/>
+					<xs:element name="ForecastVersion" nillable="true" type="q6:Version" xmlns:q6="http://schemas.datacontract.org/2004/07/System"/>
+					<xs:element name="InterestRateVersion" nillable="true" type="q7:Version" xmlns:q7="http://schemas.datacontract.org/2004/07/System"/>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:element name="ClientSupportedModelVersions" nillable="true" type="tns:ClientSupportedModelVersions"/>
+			<xs:element name="GetInterestRateVersionScenarios">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" name="interestRateVersionId" nillable="true" type="xs:string"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="GetInterestRateVersionScenariosResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" name="GetInterestRateVersionScenariosResult" nillable="true" type="q8:ArrayOfForecastScenario" xmlns:q8="http://www.pprglobal.com/compass"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:schema>
+		<xs:schema attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://schemas.microsoft.com/2003/10/Serialization/" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://schemas.microsoft.com/2003/10/Serialization/">
+			<xs:element name="anyType" nillable="true" type="xs:anyType"/>
+			<xs:element name="anyURI" nillable="true" type="xs:anyURI"/>
+			<xs:element name="base64Binary" nillable="true" type="xs:base64Binary"/>
+			<xs:element name="boolean" nillable="true" type="xs:boolean"/>
+			<xs:element name="byte" nillable="true" type="xs:byte"/>
+			<xs:element name="dateTime" nillable="true" type="xs:dateTime"/>
+			<xs:element name="decimal" nillable="true" type="xs:decimal"/>
+			<xs:element name="double" nillable="true" type="xs:double"/>
+			<xs:element name="float" nillable="true" type="xs:float"/>
+			<xs:element name="int" nillable="true" type="xs:int"/>
+			<xs:element name="long" nillable="true" type="xs:long"/>
+			<xs:element name="QName" nillable="true" type="xs:QName"/>
+			<xs:element name="short" nillable="true" type="xs:short"/>
+			<xs:element name="string" nillable="true" type="xs:string"/>
+			<xs:element name="unsignedByte" nillable="true" type="xs:unsignedByte"/>
+			<xs:element name="unsignedInt" nillable="true" type="xs:unsignedInt"/>
+			<xs:element name="unsignedLong" nillable="true" type="xs:unsignedLong"/>
+			<xs:element name="unsignedShort" nillable="true" type="xs:unsignedShort"/>
+			<xs:element name="char" nillable="true" type="tns:char"/>
+			<xs:simpleType name="char">
+				<xs:restriction base="xs:int"/>
+			</xs:simpleType>
+			<xs:element name="duration" nillable="true" type="tns:duration"/>
+			<xs:simpleType name="duration">
+				<xs:restriction base="xs:duration">
+					<xs:pattern value="\-?P(\d*D)?(T(\d*H)?(\d*M)?(\d*(\.\d*)?S)?)?"/>
+					<xs:minInclusive value="-P10675199DT2H48M5.4775808S"/>
+					<xs:maxInclusive value="P10675199DT2H48M5.4775807S"/>
+				</xs:restriction>
+			</xs:simpleType>
+			<xs:element name="guid" nillable="true" type="tns:guid"/>
+			<xs:simpleType name="guid">
+				<xs:restriction base="xs:string">
+					<xs:pattern value="[\da-fA-F]{8}-[\da-fA-F]{4}-[\da-fA-F]{4}-[\da-fA-F]{4}-[\da-fA-F]{12}"/>
+				</xs:restriction>
+			</xs:simpleType>
+			<xs:attribute name="FactoryType" type="xs:QName"/>
+			<xs:attribute name="Id" type="xs:ID"/>
+			<xs:attribute name="Ref" type="xs:IDREF"/>
+		</xs:schema>
+		<xs:schema elementFormDefault="qualified" targetNamespace="http://www.pprglobal.com/compass" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://www.pprglobal.com/compass">
+			<xs:complexType name="ArrayOfForecastScenario">
+				<xs:sequence>
+					<xs:element minOccurs="0" maxOccurs="unbounded" name="ForecastScenario" nillable="true" type="tns:ForecastScenario"/>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:element name="ArrayOfForecastScenario" nillable="true" type="tns:ArrayOfForecastScenario"/>
+			<xs:complexType name="ForecastScenario">
+				<xs:annotation>
+					<xs:appinfo/>
+					<xs:documentation>&lt;summary&gt;
+            A forecast scenario.
+            &lt;/summary&gt;</xs:documentation>
+				</xs:annotation>
+				<xs:sequence>
+					<xs:element name="Id" nillable="true" type="xs:string">
+						<xs:annotation>
+							<xs:appinfo/>
+							<xs:documentation>&lt;summary&gt;
+            The scenario ID of a built-in scenario, or if StressTest is included must be a new unique ID. 
+            &lt;/summary&gt;</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element minOccurs="0" name="Name" nillable="true" type="xs:string">
+						<xs:annotation>
+							<xs:appinfo>
+								<DefaultValue EmitDefaultValue="false" xmlns="http://schemas.microsoft.com/2003/10/Serialization/"/>
+							</xs:appinfo>
+							<xs:documentation>&lt;summary&gt;
+            User friendly name of the scenario.
+            &lt;/summary&gt;</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element minOccurs="0" name="StressTest" nillable="true" type="tns:StressTest">
+						<xs:annotation>
+							<xs:appinfo>
+								<DefaultValue EmitDefaultValue="false" xmlns="http://schemas.microsoft.com/2003/10/Serialization/"/>
+							</xs:appinfo>
+							<xs:documentation>&lt;summary&gt;
+            Forecast customizations, if applicable.
+            &lt;/summary&gt;</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:element name="ForecastScenario" nillable="true" type="tns:ForecastScenario"/>
+			<xs:complexType name="StressTest">
+				<xs:annotation>
+					<xs:appinfo/>
+					<xs:documentation>&lt;summary&gt;
+            A set of adjustments ("stresses") that are applied to a built-in Compass forecast scenario.
+            &lt;/summary&gt;</xs:documentation>
+				</xs:annotation>
+				<xs:sequence>
+					<xs:element name="Scenario" nillable="true" type="xs:string">
+						<xs:annotation>
+							<xs:appinfo/>
+							<xs:documentation>&lt;summary&gt;
+            The ID of the scenario for which you will be stress testing.
+            &lt;/summary&gt;</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element minOccurs="0" name="LtvChange" nillable="true" type="tns:ValueShock">
+						<xs:annotation>
+							<xs:appinfo>
+								<DefaultValue EmitDefaultValue="false" xmlns="http://schemas.microsoft.com/2003/10/Serialization/"/>
+							</xs:appinfo>
+							<xs:documentation>&lt;summary&gt;
+            A one time shock of the current LTV, applied as a multiplier, delta, or absolute value. 
+            &lt;/summary&gt;</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element minOccurs="0" name="DcrChange" nillable="true" type="tns:ValueShock">
+						<xs:annotation>
+							<xs:appinfo>
+								<DefaultValue EmitDefaultValue="false" xmlns="http://schemas.microsoft.com/2003/10/Serialization/"/>
+							</xs:appinfo>
+							<xs:documentation>&lt;summary&gt;
+            A one time shock of the current DCR, applied as a multiplier, delta, or absolute value. 
+            &lt;/summary&gt;</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element minOccurs="0" name="CurrDateChange" nillable="true" type="xs:dateTime">
+						<xs:annotation>
+							<xs:appinfo>
+								<DefaultValue EmitDefaultValue="false" xmlns="http://schemas.microsoft.com/2003/10/Serialization/"/>
+							</xs:appinfo>
+							<xs:documentation>&lt;summary&gt;
+            A specified historical date that becomes the new forecast starting point (current date) for all loans. 
+            &lt;/summary&gt;</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element minOccurs="0" name="RateIndexChange" nillable="true" type="tns:TimeValueShock">
+						<xs:annotation>
+							<xs:appinfo>
+								<DefaultValue EmitDefaultValue="false" xmlns="http://schemas.microsoft.com/2003/10/Serialization/"/>
+							</xs:appinfo>
+							<xs:documentation>&lt;summary&gt;
+            A custom quarterly interest rate stress for all model interest rates across a specified time period, applied as a delta. 
+            &lt;/summary&gt;</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element minOccurs="0" name="NoiSeriesChange" nillable="true" type="tns:TimeValueShock">
+						<xs:annotation>
+							<xs:appinfo>
+								<DefaultValue EmitDefaultValue="false" xmlns="http://schemas.microsoft.com/2003/10/Serialization/"/>
+							</xs:appinfo>
+							<xs:documentation>&lt;summary&gt;
+            A custom quarterly NOI stress for all model interest rates across a specified time period, applied as a delta. 
+            &lt;/summary&gt;</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element minOccurs="0" name="CapSeriesChange" nillable="true" type="tns:TimeValueShock">
+						<xs:annotation>
+							<xs:appinfo>
+								<DefaultValue EmitDefaultValue="false" xmlns="http://schemas.microsoft.com/2003/10/Serialization/"/>
+							</xs:appinfo>
+							<xs:documentation>&lt;summary&gt;
+            A custom quarterly cap rate stress for all loans over a specified time period, applied as a delta. 
+            &lt;/summary&gt;</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:element name="StressTest" nillable="true" type="tns:StressTest"/>
+			<xs:complexType name="ValueShock">
+				<xs:annotation>
+					<xs:appinfo/>
+					<xs:documentation>&lt;summary&gt;
+            A stress test shock applied to a single value.
+            &lt;/summary&gt;</xs:documentation>
+				</xs:annotation>
+				<xs:sequence>
+					<xs:element name="Value" type="xs:float">
+						<xs:annotation>
+							<xs:appinfo/>
+							<xs:documentation>&lt;summary&gt;
+            The constant value to shock by.
+            &lt;/summary&gt;
+            &lt;remarks&gt;Required&lt;/remarks&gt;</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="Type" type="tns:ValueShockType">
+						<xs:annotation>
+							<xs:appinfo/>
+							<xs:documentation>&lt;summary&gt;
+            The type of shock to apply.
+            &lt;/summary&gt;
+            &lt;remarks&gt;Required&lt;/remarks&gt;</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:element name="ValueShock" nillable="true" type="tns:ValueShock"/>
+			<xs:simpleType name="ValueShockType">
+				<xs:annotation>
+					<xs:appinfo/>
+					<xs:documentation>&lt;summary&gt;
+            The types of value shocks that can be applied.
+            &lt;/summary&gt;</xs:documentation>
+				</xs:annotation>
+				<xs:restriction base="xs:string">
+					<xs:enumeration value="Absolute">
+						<xs:annotation>
+							<xs:documentation>&lt;summary&gt;
+            Sets the value to a specific constant.
+            &lt;/summary&gt;</xs:documentation>
+						</xs:annotation>
+					</xs:enumeration>
+					<xs:enumeration value="Delta">
+						<xs:annotation>
+							<xs:documentation>&lt;summary&gt;
+            Adds a constant to an existing value.
+            &lt;/summary&gt;</xs:documentation>
+						</xs:annotation>
+					</xs:enumeration>
+					<xs:enumeration value="Multiplier">
+						<xs:annotation>
+							<xs:documentation>&lt;summary&gt;
+            Multiplies the existing value by a constant.
+            &lt;/summary&gt;</xs:documentation>
+						</xs:annotation>
+					</xs:enumeration>
+				</xs:restriction>
+			</xs:simpleType>
+			<xs:element name="ValueShockType" nillable="true" type="tns:ValueShockType"/>
+			<xs:complexType name="TimeValueShock">
+				<xs:annotation>
+					<xs:appinfo/>
+					<xs:documentation>&lt;summary&gt;
+            A stress test shock applied to a time series of values.
+            &lt;/summary&gt;</xs:documentation>
+				</xs:annotation>
+				<xs:sequence>
+					<xs:element name="Values" nillable="true" type="tns:ArrayOfTimeValue">
+						<xs:annotation>
+							<xs:appinfo/>
+							<xs:documentation>&lt;summary&gt;
+            A time series of shocks.
+            &lt;/summary&gt;</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:element name="TimeValueShock" nillable="true" type="tns:TimeValueShock"/>
+			<xs:complexType name="ArrayOfTimeValue">
+				<xs:sequence>
+					<xs:element minOccurs="0" maxOccurs="unbounded" name="TimeValue" nillable="true" type="tns:TimeValue"/>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:element name="ArrayOfTimeValue" nillable="true" type="tns:ArrayOfTimeValue"/>
+			<xs:complexType name="TimeValue">
+				<xs:annotation>
+					<xs:appinfo/>
+					<xs:documentation>&lt;summary&gt;
+            A date/value pair.
+            &lt;/summary&gt;</xs:documentation>
+				</xs:annotation>
+				<xs:sequence>
+					<xs:element name="Date" type="xs:dateTime">
+						<xs:annotation>
+							<xs:appinfo/>
+							<xs:documentation>&lt;summary&gt;
+            A date.
+            &lt;/summary&gt;</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="Value" type="xs:float">
+						<xs:annotation>
+							<xs:appinfo/>
+							<xs:documentation>&lt;summary&gt;
+            A value.
+            &lt;/summary&gt;</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:element name="TimeValue" nillable="true" type="tns:TimeValue"/>
+			<xs:complexType name="ArrayOfForecastScenarioDescription">
+				<xs:sequence>
+					<xs:element minOccurs="0" maxOccurs="unbounded" name="ForecastScenarioDescription" nillable="true" type="tns:ForecastScenarioDescription"/>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:element name="ArrayOfForecastScenarioDescription" nillable="true" type="tns:ArrayOfForecastScenarioDescription"/>
+			<xs:complexType name="ForecastScenarioDescription">
+				<xs:annotation>
+					<xs:appinfo/>
+					<xs:documentation>&lt;summary&gt;
+            A forecast scenario.
+            &lt;/summary&gt;</xs:documentation>
+				</xs:annotation>
+				<xs:sequence>
+					<xs:element name="Id" nillable="true" type="xs:string">
+						<xs:annotation>
+							<xs:appinfo/>
+							<xs:documentation>&lt;summary&gt;
+            The scenario ID of a built-in scenario, or if StressTest is included must be a new unique ID. 
+            &lt;/summary&gt;</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element minOccurs="0" name="Name" nillable="true" type="xs:string">
+						<xs:annotation>
+							<xs:appinfo>
+								<DefaultValue EmitDefaultValue="false" xmlns="http://schemas.microsoft.com/2003/10/Serialization/"/>
+							</xs:appinfo>
+							<xs:documentation>&lt;summary&gt;
+            User friendly name of the scenario.
+            &lt;/summary&gt;</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element minOccurs="0" name="SupportedCalculations" nillable="true" type="q1:ArrayOfstring" xmlns:q1="http://schemas.microsoft.com/2003/10/Serialization/Arrays">
+						<xs:annotation>
+							<xs:appinfo>
+								<DefaultValue EmitDefaultValue="false" xmlns="http://schemas.microsoft.com/2003/10/Serialization/"/>
+							</xs:appinfo>
+							<xs:documentation>&lt;summary&gt;
+            Calculations supported by the scenario.
+            &lt;/summary&gt;</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:element name="ForecastScenarioDescription" nillable="true" type="tns:ForecastScenarioDescription"/>
+		</xs:schema>
+		<xs:schema elementFormDefault="qualified" targetNamespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://schemas.microsoft.com/2003/10/Serialization/Arrays">
+			<xs:complexType name="ArrayOfstring">
+				<xs:sequence>
+					<xs:element minOccurs="0" maxOccurs="unbounded" name="string" nillable="true" type="xs:string"/>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:element name="ArrayOfstring" nillable="true" type="tns:ArrayOfstring"/>
+		</xs:schema>
+		<xs:schema elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/System" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://schemas.datacontract.org/2004/07/System">
+			<xs:complexType name="Version">
+				<xs:sequence>
+					<xs:element name="_Build" type="xs:int"/>
+					<xs:element name="_Major" type="xs:int"/>
+					<xs:element name="_Minor" type="xs:int"/>
+					<xs:element name="_Revision" type="xs:int"/>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:element name="Version" nillable="true" type="tns:Version"/>
+		</xs:schema>
+	</wsdl:types>
+	<wsdl:message name="IReferenceDataService_GetInterestRates_InputMessage">
+		<wsdl:part name="parameters" element="tns:GetInterestRates"/>
+	</wsdl:message>
+	<wsdl:message name="IReferenceDataService_GetInterestRates_OutputMessage">
+		<wsdl:part name="parameters" element="tns:GetInterestRatesResponse"/>
+	</wsdl:message>
+	<wsdl:message name="IReferenceDataService_GetConstructionDiscIndexInterestRates_InputMessage">
+		<wsdl:part name="parameters" element="tns:GetConstructionDiscIndexInterestRates"/>
+	</wsdl:message>
+	<wsdl:message name="IReferenceDataService_GetConstructionDiscIndexInterestRates_OutputMessage">
+		<wsdl:part name="parameters" element="tns:GetConstructionDiscIndexInterestRatesResponse"/>
+	</wsdl:message>
+	<wsdl:message name="IReferenceDataService_GetInterestRateVersions_InputMessage">
+		<wsdl:part name="parameters" element="tns:GetInterestRateVersions"/>
+	</wsdl:message>
+	<wsdl:message name="IReferenceDataService_GetInterestRateVersions_OutputMessage">
+		<wsdl:part name="parameters" element="tns:GetInterestRateVersionsResponse"/>
+	</wsdl:message>
+	<wsdl:message name="IReferenceDataService_GetPropertyTypes_InputMessage">
+		<wsdl:part name="parameters" element="tns:GetPropertyTypes"/>
+	</wsdl:message>
+	<wsdl:message name="IReferenceDataService_GetPropertyTypes_OutputMessage">
+		<wsdl:part name="parameters" element="tns:GetPropertyTypesResponse"/>
+	</wsdl:message>
+	<wsdl:message name="IReferenceDataService_GetBuiltinForecastScenarios_InputMessage">
+		<wsdl:part name="parameters" element="tns:GetBuiltinForecastScenarios"/>
+	</wsdl:message>
+	<wsdl:message name="IReferenceDataService_GetBuiltinForecastScenarios_OutputMessage">
+		<wsdl:part name="parameters" element="tns:GetBuiltinForecastScenariosResponse"/>
+	</wsdl:message>
+	<wsdl:message name="IReferenceDataService_GetSupportedZipcodes_InputMessage">
+		<wsdl:part name="parameters" element="tns:GetSupportedZipcodes"/>
+	</wsdl:message>
+	<wsdl:message name="IReferenceDataService_GetSupportedZipcodes_OutputMessage">
+		<wsdl:part name="parameters" element="tns:GetSupportedZipcodesResponse"/>
+	</wsdl:message>
+	<wsdl:message name="IReferenceDataService_GetSupportedMetros_InputMessage">
+		<wsdl:part name="parameters" element="tns:GetSupportedMetros"/>
+	</wsdl:message>
+	<wsdl:message name="IReferenceDataService_GetSupportedMetros_OutputMessage">
+		<wsdl:part name="parameters" element="tns:GetSupportedMetrosResponse"/>
+	</wsdl:message>
+	<wsdl:message name="IReferenceDataService_GetMetros_InputMessage">
+		<wsdl:part name="parameters" element="tns:GetMetros"/>
+	</wsdl:message>
+	<wsdl:message name="IReferenceDataService_GetMetros_OutputMessage">
+		<wsdl:part name="parameters" element="tns:GetMetrosResponse"/>
+	</wsdl:message>
+	<wsdl:message name="IReferenceDataService_GetForecastVersions_InputMessage">
+		<wsdl:part name="parameters" element="tns:GetForecastVersions"/>
+	</wsdl:message>
+	<wsdl:message name="IReferenceDataService_GetForecastVersions_OutputMessage">
+		<wsdl:part name="parameters" element="tns:GetForecastVersionsResponse"/>
+	</wsdl:message>
+	<wsdl:message name="IReferenceDataService_GetForecastScenarioDescriptions_InputMessage">
+		<wsdl:part name="parameters" element="tns:GetForecastScenarioDescriptions"/>
+	</wsdl:message>
+	<wsdl:message name="IReferenceDataService_GetForecastScenarioDescriptions_OutputMessage">
+		<wsdl:part name="parameters" element="tns:GetForecastScenarioDescriptionsResponse"/>
+	</wsdl:message>
+	<wsdl:message name="IReferenceDataService_GetRiskGrades_InputMessage">
+		<wsdl:part name="parameters" element="tns:GetRiskGrades"/>
+	</wsdl:message>
+	<wsdl:message name="IReferenceDataService_GetRiskGrades_OutputMessage">
+		<wsdl:part name="parameters" element="tns:GetRiskGradesResponse"/>
+	</wsdl:message>
+	<wsdl:message name="IReferenceDataService_GetTenantCreditRatings_InputMessage">
+		<wsdl:part name="parameters" element="tns:GetTenantCreditRatings"/>
+	</wsdl:message>
+	<wsdl:message name="IReferenceDataService_GetTenantCreditRatings_OutputMessage">
+		<wsdl:part name="parameters" element="tns:GetTenantCreditRatingsResponse"/>
+	</wsdl:message>
+	<wsdl:message name="IReferenceDataService_GetBorrowerCreditRatings_InputMessage">
+		<wsdl:part name="parameters" element="tns:GetBorrowerCreditRatings"/>
+	</wsdl:message>
+	<wsdl:message name="IReferenceDataService_GetBorrowerCreditRatings_OutputMessage">
+		<wsdl:part name="parameters" element="tns:GetBorrowerCreditRatingsResponse"/>
+	</wsdl:message>
+	<wsdl:message name="IReferenceDataService_GetConfidenceLevels_InputMessage">
+		<wsdl:part name="parameters" element="tns:GetConfidenceLevels"/>
+	</wsdl:message>
+	<wsdl:message name="IReferenceDataService_GetConfidenceLevels_OutputMessage">
+		<wsdl:part name="parameters" element="tns:GetConfidenceLevelsResponse"/>
+	</wsdl:message>
+	<wsdl:message name="IReferenceDataService_GetSupportedModelVersions_InputMessage">
+		<wsdl:part name="parameters" element="tns:GetSupportedModelVersions"/>
+	</wsdl:message>
+	<wsdl:message name="IReferenceDataService_GetSupportedModelVersions_OutputMessage">
+		<wsdl:part name="parameters" element="tns:GetSupportedModelVersionsResponse"/>
+	</wsdl:message>
+	<wsdl:message name="IReferenceDataService_GetInterestRateVersionScenarios_InputMessage">
+		<wsdl:part name="parameters" element="tns:GetInterestRateVersionScenarios"/>
+	</wsdl:message>
+	<wsdl:message name="IReferenceDataService_GetInterestRateVersionScenarios_OutputMessage">
+		<wsdl:part name="parameters" element="tns:GetInterestRateVersionScenariosResponse"/>
+	</wsdl:message>
+	<wsdl:portType name="IReferenceDataService">
+		<wsdl:documentation>&lt;summary&gt;&#xD;
+            Provides access to reference data/lookup tables for the Compass model.  &#xD;
+            &lt;/summary&gt;</wsdl:documentation>
+		<wsdl:operation name="GetInterestRates">
+			<wsdl:documentation>&lt;summary&gt;&#xD;
+            Gets the set of built-in interest rates.&#xD;
+            &lt;/summary&gt;&#xD;
+            &lt;param name="versionId"&gt;The interest rate version to use.  Defaults to the most recent version if not specified.&lt;/param&gt;&#xD;
+            &lt;returns&gt;An array of interest rate indices.&lt;/returns&gt;</wsdl:documentation>
+			<wsdl:input wsaw:Action="http://www.pprglobal.com/compass/ref/IReferenceDataService/GetInterestRates" message="tns:IReferenceDataService_GetInterestRates_InputMessage"/>
+			<wsdl:output wsaw:Action="http://www.pprglobal.com/compass/ref/IReferenceDataService/GetInterestRatesResponse" message="tns:IReferenceDataService_GetInterestRates_OutputMessage"/>
+		</wsdl:operation>
+		<wsdl:operation name="GetConstructionDiscIndexInterestRates">
+			<wsdl:documentation>&lt;summary&gt;&#xD;
+            Gets the set of built-in interest rates specifically used for the Construction Loan Discounted Index Rate &#xD;
+            &lt;/summary&gt;&#xD;
+            &lt;param name="irVersionId"&gt;&lt;/param&gt;&#xD;
+            &lt;returns&gt;&lt;/returns&gt;</wsdl:documentation>
+			<wsdl:input wsaw:Action="http://www.pprglobal.com/compass/ref/IReferenceDataService/GetConstructionDiscIndexInterestRates" message="tns:IReferenceDataService_GetConstructionDiscIndexInterestRates_InputMessage"/>
+			<wsdl:output wsaw:Action="http://www.pprglobal.com/compass/ref/IReferenceDataService/GetConstructionDiscIndexInterestRatesResponse" message="tns:IReferenceDataService_GetConstructionDiscIndexInterestRates_OutputMessage"/>
+		</wsdl:operation>
+		<wsdl:operation name="GetInterestRateVersions">
+			<wsdl:documentation>&lt;summary&gt;&#xD;
+            Gets the set of interest rate versions available.&#xD;
+            &lt;/summary&gt;</wsdl:documentation>
+			<wsdl:input wsaw:Action="http://www.pprglobal.com/compass/ref/IReferenceDataService/GetInterestRateVersions" message="tns:IReferenceDataService_GetInterestRateVersions_InputMessage"/>
+			<wsdl:output wsaw:Action="http://www.pprglobal.com/compass/ref/IReferenceDataService/GetInterestRateVersionsResponse" message="tns:IReferenceDataService_GetInterestRateVersions_OutputMessage"/>
+		</wsdl:operation>
+		<wsdl:operation name="GetPropertyTypes">
+			<wsdl:documentation>&lt;summary&gt;&#xD;
+            Gets the list of supported property types.&#xD;
+            &lt;/summary&gt;&#xD;
+            &lt;param name="forecastVersionId"&gt;The PPR forecast version Id to use.  Defaults to the most recent forecast if not specified.&lt;/param&gt;&#xD;
+            &lt;returns&gt;&lt;/returns&gt;</wsdl:documentation>
+			<wsdl:input wsaw:Action="http://www.pprglobal.com/compass/ref/IReferenceDataService/GetPropertyTypes" message="tns:IReferenceDataService_GetPropertyTypes_InputMessage"/>
+			<wsdl:output wsaw:Action="http://www.pprglobal.com/compass/ref/IReferenceDataService/GetPropertyTypesResponse" message="tns:IReferenceDataService_GetPropertyTypes_OutputMessage"/>
+		</wsdl:operation>
+		<wsdl:operation name="GetBuiltinForecastScenarios">
+			<wsdl:documentation>&lt;summary&gt;&#xD;
+            Gets the list of built-in forecast scenarios.&#xD;
+            &lt;/summary&gt;&#xD;
+            &lt;param name="forecastVersionId"&gt;The PPR forecast version Id to use.  Defaults to the most recent forecast if not specified.&lt;/param&gt;&#xD;
+            &lt;returns&gt;&lt;/returns&gt;</wsdl:documentation>
+			<wsdl:input wsaw:Action="http://www.pprglobal.com/compass/ref/IReferenceDataService/GetBuiltinForecastScenarios" message="tns:IReferenceDataService_GetBuiltinForecastScenarios_InputMessage"/>
+			<wsdl:output wsaw:Action="http://www.pprglobal.com/compass/ref/IReferenceDataService/GetBuiltinForecastScenariosResponse" message="tns:IReferenceDataService_GetBuiltinForecastScenarios_OutputMessage"/>
+		</wsdl:operation>
+		<wsdl:operation name="GetSupportedZipcodes">
+			<wsdl:documentation>&lt;summary&gt;&#xD;
+            Gets the list of zipcodes that are supported for the given forecast and property type.&#xD;
+            &lt;/summary&gt;&#xD;
+            &lt;param name="forecastVersionId"&gt;The PPR forecast version Id to use.  Defaults to the most recent forecast if not specified.&lt;/param&gt;&#xD;
+            &lt;param name="propertyType"&gt;A property type id&lt;/param&gt;&#xD;
+            &lt;returns&gt;&lt;/returns&gt;</wsdl:documentation>
+			<wsdl:input wsaw:Action="http://www.pprglobal.com/compass/ref/IReferenceDataService/GetSupportedZipcodes" message="tns:IReferenceDataService_GetSupportedZipcodes_InputMessage"/>
+			<wsdl:output wsaw:Action="http://www.pprglobal.com/compass/ref/IReferenceDataService/GetSupportedZipcodesResponse" message="tns:IReferenceDataService_GetSupportedZipcodes_OutputMessage"/>
+		</wsdl:operation>
+		<wsdl:operation name="GetSupportedMetros">
+			<wsdl:documentation>&lt;summary&gt;&#xD;
+            Gets the list of metros that are supported for the given forecast and property type.&#xD;
+            &lt;/summary&gt;&#xD;
+            &lt;param name="forecastVersionId"&gt;The PPR forecast version Id to use.  Defaults to the most recent forecast if not specified.&lt;/param&gt;&#xD;
+            &lt;param name="propertyType"&gt;A property type id&lt;/param&gt;&#xD;
+            &lt;returns&gt;&lt;/returns&gt;</wsdl:documentation>
+			<wsdl:input wsaw:Action="http://www.pprglobal.com/compass/ref/IReferenceDataService/GetSupportedMetros" message="tns:IReferenceDataService_GetSupportedMetros_InputMessage"/>
+			<wsdl:output wsaw:Action="http://www.pprglobal.com/compass/ref/IReferenceDataService/GetSupportedMetrosResponse" message="tns:IReferenceDataService_GetSupportedMetros_OutputMessage"/>
+		</wsdl:operation>
+		<wsdl:operation name="GetMetros">
+			<wsdl:documentation>&lt;summary&gt;&#xD;
+            Gets the list of metros.&#xD;
+            &lt;/summary&gt;&#xD;
+            &lt;param name="forecastVersionId"&gt;The PPR forecast version Id to use.  Defaults to the most recent forecast if not specified.&lt;/param&gt;&#xD;
+            &lt;returns&gt;&lt;/returns&gt;</wsdl:documentation>
+			<wsdl:input wsaw:Action="http://www.pprglobal.com/compass/ref/IReferenceDataService/GetMetros" message="tns:IReferenceDataService_GetMetros_InputMessage"/>
+			<wsdl:output wsaw:Action="http://www.pprglobal.com/compass/ref/IReferenceDataService/GetMetrosResponse" message="tns:IReferenceDataService_GetMetros_OutputMessage"/>
+		</wsdl:operation>
+		<wsdl:operation name="GetForecastVersions">
+			<wsdl:documentation>&lt;summary&gt;&#xD;
+            Gets list of forecast versions supported by the Compass model.&#xD;
+            &lt;/summary&gt;&#xD;
+            &lt;returns&gt;&lt;/returns&gt;</wsdl:documentation>
+			<wsdl:input wsaw:Action="http://www.pprglobal.com/compass/ref/IReferenceDataService/GetForecastVersions" message="tns:IReferenceDataService_GetForecastVersions_InputMessage"/>
+			<wsdl:output wsaw:Action="http://www.pprglobal.com/compass/ref/IReferenceDataService/GetForecastVersionsResponse" message="tns:IReferenceDataService_GetForecastVersions_OutputMessage"/>
+		</wsdl:operation>
+		<wsdl:operation name="GetForecastScenarioDescriptions">
+			<wsdl:documentation>&lt;summary&gt;&#xD;
+            Gets ForecastScenarioDescription(s) for the forecast version&#xD;
+            &lt;/summary&gt;&#xD;
+            &lt;param name="forecastVersionId"&gt;&lt;/param&gt;&#xD;
+            &lt;returns&gt;supported periods&lt;/returns&gt;</wsdl:documentation>
+			<wsdl:input wsaw:Action="http://www.pprglobal.com/compass/ref/IReferenceDataService/GetForecastScenarioDescriptions" message="tns:IReferenceDataService_GetForecastScenarioDescriptions_InputMessage"/>
+			<wsdl:output wsaw:Action="http://www.pprglobal.com/compass/ref/IReferenceDataService/GetForecastScenarioDescriptionsResponse" message="tns:IReferenceDataService_GetForecastScenarioDescriptions_OutputMessage"/>
+		</wsdl:operation>
+		<wsdl:operation name="GetRiskGrades">
+			<wsdl:documentation>&lt;summary&gt;&#xD;
+            Gets the set of Compass built-in risk grades.&#xD;
+            &lt;/summary&gt;&#xD;
+            &lt;returns&gt;&lt;/returns&gt;</wsdl:documentation>
+			<wsdl:input wsaw:Action="http://www.pprglobal.com/compass/ref/IReferenceDataService/GetRiskGrades" message="tns:IReferenceDataService_GetRiskGrades_InputMessage"/>
+			<wsdl:output wsaw:Action="http://www.pprglobal.com/compass/ref/IReferenceDataService/GetRiskGradesResponse" message="tns:IReferenceDataService_GetRiskGrades_OutputMessage"/>
+		</wsdl:operation>
+		<wsdl:operation name="GetTenantCreditRatings">
+			<wsdl:documentation>&lt;summary&gt;&#xD;
+            Gets the set of Compass built-in tenant credit ratings.&#xD;
+            &lt;/summary&gt;&#xD;
+            &lt;returns&gt;&lt;/returns&gt;</wsdl:documentation>
+			<wsdl:input wsaw:Action="http://www.pprglobal.com/compass/ref/IReferenceDataService/GetTenantCreditRatings" message="tns:IReferenceDataService_GetTenantCreditRatings_InputMessage"/>
+			<wsdl:output wsaw:Action="http://www.pprglobal.com/compass/ref/IReferenceDataService/GetTenantCreditRatingsResponse" message="tns:IReferenceDataService_GetTenantCreditRatings_OutputMessage"/>
+		</wsdl:operation>
+		<wsdl:operation name="GetBorrowerCreditRatings">
+			<wsdl:documentation>&lt;summary&gt;&#xD;
+            Gets the set of Compass built-in borrower credit ratings.&#xD;
+            &lt;/summary&gt;&#xD;
+            &lt;returns&gt;&lt;/returns&gt;</wsdl:documentation>
+			<wsdl:input wsaw:Action="http://www.pprglobal.com/compass/ref/IReferenceDataService/GetBorrowerCreditRatings" message="tns:IReferenceDataService_GetBorrowerCreditRatings_InputMessage"/>
+			<wsdl:output wsaw:Action="http://www.pprglobal.com/compass/ref/IReferenceDataService/GetBorrowerCreditRatingsResponse" message="tns:IReferenceDataService_GetBorrowerCreditRatings_OutputMessage"/>
+		</wsdl:operation>
+		<wsdl:operation name="GetConfidenceLevels">
+			<wsdl:documentation>&lt;summary&gt;&#xD;
+            Gets the set of Compass built-in confidence levels.&#xD;
+            &lt;/summary&gt;&#xD;
+            &lt;returns&gt;&lt;/returns&gt;</wsdl:documentation>
+			<wsdl:input wsaw:Action="http://www.pprglobal.com/compass/ref/IReferenceDataService/GetConfidenceLevels" message="tns:IReferenceDataService_GetConfidenceLevels_InputMessage"/>
+			<wsdl:output wsaw:Action="http://www.pprglobal.com/compass/ref/IReferenceDataService/GetConfidenceLevelsResponse" message="tns:IReferenceDataService_GetConfidenceLevels_OutputMessage"/>
+		</wsdl:operation>
+		<wsdl:operation name="GetSupportedModelVersions">
+			<wsdl:documentation>&lt;summary&gt;&#xD;
+            Gets the calculation model version supported by the service.&#xD;
+            &lt;/summary&gt;&#xD;
+            &lt;returns&gt;&lt;/returns&gt;</wsdl:documentation>
+			<wsdl:input wsaw:Action="http://www.pprglobal.com/compass/ref/IReferenceDataService/GetSupportedModelVersions" message="tns:IReferenceDataService_GetSupportedModelVersions_InputMessage"/>
+			<wsdl:output wsaw:Action="http://www.pprglobal.com/compass/ref/IReferenceDataService/GetSupportedModelVersionsResponse" message="tns:IReferenceDataService_GetSupportedModelVersions_OutputMessage"/>
+		</wsdl:operation>
+		<wsdl:operation name="GetInterestRateVersionScenarios">
+			<wsdl:documentation>&lt;summary&gt;&#xD;
+            Get the scenarios that are associated to the given interest rate version id.&#xD;
+            &lt;/summary&gt;&#xD;
+            &lt;param name="interestRateVersionId"&gt;&lt;/param&gt;&#xD;
+            &lt;returns&gt;&lt;/returns&gt;</wsdl:documentation>
+			<wsdl:input wsaw:Action="http://www.pprglobal.com/compass/ref/IReferenceDataService/GetInterestRateVersionScenarios" message="tns:IReferenceDataService_GetInterestRateVersionScenarios_InputMessage"/>
+			<wsdl:output wsaw:Action="http://www.pprglobal.com/compass/ref/IReferenceDataService/GetInterestRateVersionScenariosResponse" message="tns:IReferenceDataService_GetInterestRateVersionScenarios_OutputMessage"/>
+		</wsdl:operation>
+	</wsdl:portType>
+	<wsdl:binding name="BasicHttpBinding_IReferenceDataService" type="tns:IReferenceDataService">
+		<soap:binding transport="http://schemas.xmlsoap.org/soap/http"/>
+		<wsdl:operation name="GetInterestRates">
+			<soap:operation soapAction="http://www.pprglobal.com/compass/ref/IReferenceDataService/GetInterestRates" style="document"/>
+			<wsdl:input>
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="GetConstructionDiscIndexInterestRates">
+			<soap:operation soapAction="http://www.pprglobal.com/compass/ref/IReferenceDataService/GetConstructionDiscIndexInterestRates" style="document"/>
+			<wsdl:input>
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="GetInterestRateVersions">
+			<soap:operation soapAction="http://www.pprglobal.com/compass/ref/IReferenceDataService/GetInterestRateVersions" style="document"/>
+			<wsdl:input>
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="GetPropertyTypes">
+			<soap:operation soapAction="http://www.pprglobal.com/compass/ref/IReferenceDataService/GetPropertyTypes" style="document"/>
+			<wsdl:input>
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="GetBuiltinForecastScenarios">
+			<soap:operation soapAction="http://www.pprglobal.com/compass/ref/IReferenceDataService/GetBuiltinForecastScenarios" style="document"/>
+			<wsdl:input>
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="GetSupportedZipcodes">
+			<soap:operation soapAction="http://www.pprglobal.com/compass/ref/IReferenceDataService/GetSupportedZipcodes" style="document"/>
+			<wsdl:input>
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="GetSupportedMetros">
+			<soap:operation soapAction="http://www.pprglobal.com/compass/ref/IReferenceDataService/GetSupportedMetros" style="document"/>
+			<wsdl:input>
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="GetMetros">
+			<soap:operation soapAction="http://www.pprglobal.com/compass/ref/IReferenceDataService/GetMetros" style="document"/>
+			<wsdl:input>
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="GetForecastVersions">
+			<soap:operation soapAction="http://www.pprglobal.com/compass/ref/IReferenceDataService/GetForecastVersions" style="document"/>
+			<wsdl:input>
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="GetForecastScenarioDescriptions">
+			<soap:operation soapAction="http://www.pprglobal.com/compass/ref/IReferenceDataService/GetForecastScenarioDescriptions" style="document"/>
+			<wsdl:input>
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="GetRiskGrades">
+			<soap:operation soapAction="http://www.pprglobal.com/compass/ref/IReferenceDataService/GetRiskGrades" style="document"/>
+			<wsdl:input>
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="GetTenantCreditRatings">
+			<soap:operation soapAction="http://www.pprglobal.com/compass/ref/IReferenceDataService/GetTenantCreditRatings" style="document"/>
+			<wsdl:input>
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="GetBorrowerCreditRatings">
+			<soap:operation soapAction="http://www.pprglobal.com/compass/ref/IReferenceDataService/GetBorrowerCreditRatings" style="document"/>
+			<wsdl:input>
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="GetConfidenceLevels">
+			<soap:operation soapAction="http://www.pprglobal.com/compass/ref/IReferenceDataService/GetConfidenceLevels" style="document"/>
+			<wsdl:input>
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="GetSupportedModelVersions">
+			<soap:operation soapAction="http://www.pprglobal.com/compass/ref/IReferenceDataService/GetSupportedModelVersions" style="document"/>
+			<wsdl:input>
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="GetInterestRateVersionScenarios">
+			<soap:operation soapAction="http://www.pprglobal.com/compass/ref/IReferenceDataService/GetInterestRateVersionScenarios" style="document"/>
+			<wsdl:input>
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+	</wsdl:binding>
+	<wsdl:binding name="BasicHttpBinding_IReferenceDataService1" type="tns:IReferenceDataService">
+		<wsp:PolicyReference URI="#BasicHttpBinding_IReferenceDataService1_policy"/>
+		<soap:binding transport="http://schemas.xmlsoap.org/soap/http"/>
+		<wsdl:operation name="GetInterestRates">
+			<soap:operation soapAction="http://www.pprglobal.com/compass/ref/IReferenceDataService/GetInterestRates" style="document"/>
+			<wsdl:input>
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="GetConstructionDiscIndexInterestRates">
+			<soap:operation soapAction="http://www.pprglobal.com/compass/ref/IReferenceDataService/GetConstructionDiscIndexInterestRates" style="document"/>
+			<wsdl:input>
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="GetInterestRateVersions">
+			<soap:operation soapAction="http://www.pprglobal.com/compass/ref/IReferenceDataService/GetInterestRateVersions" style="document"/>
+			<wsdl:input>
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="GetPropertyTypes">
+			<soap:operation soapAction="http://www.pprglobal.com/compass/ref/IReferenceDataService/GetPropertyTypes" style="document"/>
+			<wsdl:input>
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="GetBuiltinForecastScenarios">
+			<soap:operation soapAction="http://www.pprglobal.com/compass/ref/IReferenceDataService/GetBuiltinForecastScenarios" style="document"/>
+			<wsdl:input>
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="GetSupportedZipcodes">
+			<soap:operation soapAction="http://www.pprglobal.com/compass/ref/IReferenceDataService/GetSupportedZipcodes" style="document"/>
+			<wsdl:input>
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="GetSupportedMetros">
+			<soap:operation soapAction="http://www.pprglobal.com/compass/ref/IReferenceDataService/GetSupportedMetros" style="document"/>
+			<wsdl:input>
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="GetMetros">
+			<soap:operation soapAction="http://www.pprglobal.com/compass/ref/IReferenceDataService/GetMetros" style="document"/>
+			<wsdl:input>
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="GetForecastVersions">
+			<soap:operation soapAction="http://www.pprglobal.com/compass/ref/IReferenceDataService/GetForecastVersions" style="document"/>
+			<wsdl:input>
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="GetForecastScenarioDescriptions">
+			<soap:operation soapAction="http://www.pprglobal.com/compass/ref/IReferenceDataService/GetForecastScenarioDescriptions" style="document"/>
+			<wsdl:input>
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="GetRiskGrades">
+			<soap:operation soapAction="http://www.pprglobal.com/compass/ref/IReferenceDataService/GetRiskGrades" style="document"/>
+			<wsdl:input>
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="GetTenantCreditRatings">
+			<soap:operation soapAction="http://www.pprglobal.com/compass/ref/IReferenceDataService/GetTenantCreditRatings" style="document"/>
+			<wsdl:input>
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="GetBorrowerCreditRatings">
+			<soap:operation soapAction="http://www.pprglobal.com/compass/ref/IReferenceDataService/GetBorrowerCreditRatings" style="document"/>
+			<wsdl:input>
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="GetConfidenceLevels">
+			<soap:operation soapAction="http://www.pprglobal.com/compass/ref/IReferenceDataService/GetConfidenceLevels" style="document"/>
+			<wsdl:input>
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="GetSupportedModelVersions">
+			<soap:operation soapAction="http://www.pprglobal.com/compass/ref/IReferenceDataService/GetSupportedModelVersions" style="document"/>
+			<wsdl:input>
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="GetInterestRateVersionScenarios">
+			<soap:operation soapAction="http://www.pprglobal.com/compass/ref/IReferenceDataService/GetInterestRateVersionScenarios" style="document"/>
+			<wsdl:input>
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+	</wsdl:binding>
+	<wsdl:service name="referenceDataWcfService">
+		<wsdl:port name="BasicHttpBinding_IReferenceDataService" binding="tns:BasicHttpBinding_IReferenceDataService">
+			<soap:address location="http://service-riskanalytics-main.dev.costar.com/Compass/20191115/ReferenceData.svc"/>
+		</wsdl:port>
+		<wsdl:port name="BasicHttpBinding_IReferenceDataService1" binding="tns:BasicHttpBinding_IReferenceDataService1">
+			<soap:address location="https://service-riskanalytics-main.dev.costar.com/Compass/20191115/ReferenceData.svc"/>
+		</wsdl:port>
+		<wsdl:port name="BasicHttpBinding_IReferenceDataService2" binding="tns:BasicHttpBinding_IReferenceDataService">
+			<soap:address location="http://service-riskanalytics-main.dev.costar.com/Compass/20191115/ReferenceData.svc/pb"/>
+		</wsdl:port>
+		<wsdl:port name="BasicHttpBinding_IReferenceDataService3" binding="tns:BasicHttpBinding_IReferenceDataService1">
+			<soap:address location="https://service-riskanalytics-main.dev.costar.com/Compass/20191115/ReferenceData.svc/pb"/>
+		</wsdl:port>
+	</wsdl:service>
+</wsdl:definitions>
